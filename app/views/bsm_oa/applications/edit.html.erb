@@ -1,0 +1,10 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to "&larr; Back".html_safe, oauth_applications_path, class: 'btn btn-lg btn-default'%>
+  </div>
+  <h1>Edit Application</h1>
+</div>
+
+<%= simple_form_for @application, url: oauth_application_url(@application) do |f| %>
+  <%= render 'inputs', f: f %>
+<% end %>
