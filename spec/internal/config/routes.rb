@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  BsmOa.install_routes!(self)
+  mount_bsm_oa
 end

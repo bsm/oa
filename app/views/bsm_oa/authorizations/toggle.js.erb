@@ -1,0 +1,9 @@
+var elem     = $("#<%= auth_element_id(@authorization, params[:permission]) %>"),
+    included = <%= @authorization.permissions.include?(params[:permission]) %>,
+    inClass  = "label-info",
+    exClass  = "label-default";
+
+elem
+  .removeClass(inClass)
+  .removeClass(exClass)
+  .addClass(included ? inClass : exClass);

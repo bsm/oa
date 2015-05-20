@@ -1,0 +1,16 @@
+<%- app = auth.application %>
+<tr>
+  <td><%= app.name %></td>
+  <td>
+    <%= '&ndash;'.html_safe if app.permissions.empty? %>
+    <% app.permissions.each do |permission| %>
+      <%- klass = auth.permissions.include?(permission) ? 'info' : 'default' %>
+      <%- path  = toggle_authorization_path auth, permission: permission, format: 'js' %>
+      <%= link_to permission, path, class: "label label-#{klass}", remote: true, method: :put, id: auth_element_id(auth, permission) %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_authorization_path(auth), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'Delete', authorization_path(auth), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default btn-xs' %>
+  </td>
+</tr>

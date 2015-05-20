@@ -1,0 +1,10 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to "&larr; Back".html_safe, bsm_oa_role_path(@authorization.role), class: 'btn btn-lg btn-default'%>
+  </div>
+  <h1>Edit Authorization</h1>
+</div>
+
+<%= simple_form_for @authorization, url: bsm_oa_authorization_url do |f| %>
+  <%= render 'inputs', f: f %>
+<% end %>

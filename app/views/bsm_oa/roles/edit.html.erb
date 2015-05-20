@@ -1,0 +1,10 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to "&larr; Back".html_safe, bsm_oa_roles_path, class: 'btn btn-lg btn-default'%>
+  </div>
+  <h1>Edit Role</h1>
+</div>
+
+<%= simple_form_for @role, url: bsm_oa_role_url(@role) do |f| %>
+  <%= render 'inputs', f: f %>
+<% end %>

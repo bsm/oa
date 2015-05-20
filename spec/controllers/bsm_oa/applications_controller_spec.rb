@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe BsmOa::ApplicationsController, type: :controller do
 
-  it { is_expected.to be_a(Doorkeeper::ApplicationsController) }
-
   let(:user)         { create :user }
   let!(:application) { create :application }
 

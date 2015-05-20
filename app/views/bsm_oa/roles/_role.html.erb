@@ -1,0 +1,16 @@
+<tr>
+  <td><%= link_to role.name, role %></td>
+  <td>
+    <%= '&ndash;'.html_safe unless role.description %>
+    <%= role.description %></td>
+  <td>
+    <%= '&ndash;'.html_safe if role.authorizations.empty? %>
+    <% role.authorizations.includes(:application).each do |auth| %>
+      <span class="label label-info"><%= "#{auth.application.name}" %></span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_role_url(role), class: 'btn btn-default btn-xs' if current_user.admin? %>
+    <%= link_to 'Delete', role_path(role), data: { confirm: 'Are you sure?' }, :method => :delete, class: 'btn btn-default btn-xs'  %>
+  </td>
+</tr>

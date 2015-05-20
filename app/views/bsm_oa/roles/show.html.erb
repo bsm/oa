@@ -1,0 +1,41 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to "&larr; Back".html_safe, bsm_oa_roles_path, class: 'btn btn-lg btn-default'%>
+  </div>
+  <h1><%= @role.name %></h1>
+</div>
+
+<h3>Details</h3>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Name:</th>
+      <td><%= @role.name %></td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td>
+        <%= '&ndash;'.html_safe unless @role.description %>
+        <%= @role.description %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<h3>
+  Authorizations
+  <%= link_to 'New', new_bsm_oa_role_bsm_oa_authorization_path(@role), class: 'btn btn-sm btn-primary' %>
+</h3>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr><th>Application</th><th>Permissions</th><th>&nbsp;</th></tr>
+    </thead>
+    <tbody>
+      <% @role.authorizations.includes(:application).each do |auth| %>
+        <%= render 'authorization', auth: auth %>
+      <% end -%>
+    </tbody>
+  </table>
+</div>
+

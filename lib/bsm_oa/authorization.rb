@@ -1,5 +1,6 @@
 module BsmOa
   class Authorization < ActiveRecord::Base
+    self.table_name = :"#{table_name_prefix}bsm_oa_authorizations#{table_name_suffix}"
 
     # ---> ASSOCIATIONS
     belongs_to :role, inverse_of: :authorizations

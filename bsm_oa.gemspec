@@ -17,11 +17,12 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'railties', '>= 4.1'
-  s.add_dependency 'devise', '>= 3.4'
-  s.add_dependency 'doorkeeper', '>= 2.2'
+  s.add_dependency 'doorkeeper', '~> 2.2.1'
   s.add_dependency 'responders', '~> 2.0'
   s.add_dependency 'jbuilder', '~> 2.2'
   s.add_dependency 'bsm-models'
+  s.add_dependency 'has_scope', '~> 0.6'
+  s.add_dependency 'simple_form', '~> 3.1.0'
 
   s.add_development_dependency 'rails', ">= 4.1"
   s.add_development_dependency 'combustion', '~> 0.5.3'

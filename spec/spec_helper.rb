@@ -12,6 +12,9 @@ Combustion.initialize! :active_record do
     orm :active_record
   end
 
+  SimpleForm.setup do |_|
+  end
+
 end
 
 # Internal app

@@ -1,6 +1,5 @@
 module BsmOa
   class Engine < Rails::Engine
-    isolate_namespace BsmOa
 
     initializer 'bsm_oa.migrations' do |app|
       unless app.root.to_s.match root.to_s
@@ -8,6 +7,10 @@ module BsmOa
           app.config.paths["db/migrate"] << path
         end
       end
+    end
+
+    initializer "bsm_oa.routes" do
+      Routes.install!
     end
 
     initializer "bsm_oa.models" do

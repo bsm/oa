@@ -1,5 +1,5 @@
 module BsmOa
-  class AccountsController < ActionController::Base
+  class AccountsController < Doorkeeper::ApplicationController
     before_action :doorkeeper_authorize!
     respond_to    :json
 
