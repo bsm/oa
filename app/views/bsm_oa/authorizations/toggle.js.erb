@@ -1,4 +1,4 @@
-var elem     = $("#<%= auth_element_id(@authorization, params[:permission]) %>"),
+var elem     = $("bsm_oa_authorization_<%= @authorization.to_param %>_<%= params[:permission] %>"),
     included = <%= @authorization.permissions.include?(params[:permission]) %>,
     inClass  = "label-info",
     exClass  = "label-default";

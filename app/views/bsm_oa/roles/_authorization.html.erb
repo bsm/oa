@@ -6,7 +6,8 @@
     <% app.permissions.each do |permission| %>
       <%- klass = auth.permissions.include?(permission) ? 'info' : 'default' %>
       <%- path  = toggle_authorization_path auth, permission: permission, format: 'js' %>
-      <%= link_to permission, path, class: "label label-#{klass}", remote: true, method: :put, id: auth_element_id(auth, permission) %>
+      <%- elem  = "bsm_oa_authorization_#{auth.to_param}_#{permission}" %>
+      <%= link_to permission, path, class: "label label-#{klass}", remote: true, method: :put, id: elem %>
     <% end %>
   </td>
   <td>
