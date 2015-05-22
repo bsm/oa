@@ -65,7 +65,7 @@
     end
 
     def permitted_params
-      params.require(:authorization).permit :application_id, :permissions_string
+      params.require(:authorization).permit :application_id, :permissions_string, :uid, :secret
     end
 
     def redirect_to_index_on_html

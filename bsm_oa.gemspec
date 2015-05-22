@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.org/bsm/bsm_oa'
   s.summary     = ''
   s.description = ''
-  s.license     = 'MIT'
+  s.licenses    = ['MIT']
 
-  s.files         = `git ls-files`.split('\n')
-  s.test_files    = `git ls-files -- spec/*`.split('\n')
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ['lib']
 
   s.add_dependency 'railties', '>= 4.1', '< 5.0'

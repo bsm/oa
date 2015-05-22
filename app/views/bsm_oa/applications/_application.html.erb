@@ -1,5 +1,7 @@
 <tr>
   <td><%= application.name %></td>
+  <td><%= truncate(application.uid, length: 15) %></td>
+  <td><%= truncate(application.secret, length: 15) %></td>
   <td><%= application.redirect_uri %></td>
   <td>
     <%= '&ndash;'.html_safe if application.permissions.empty? %>

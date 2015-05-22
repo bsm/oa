@@ -21,7 +21,7 @@ module BsmOa
     protected
 
       def application_params
-        params.require(:doorkeeper_application).permit(:name, :redirect_uri, :permissions, :permissions_string)
+        params.require(:doorkeeper_application).permit(:name, :redirect_uri, :permissions, :permissions_string, :uid, :secret)
       end
 
       def redirect_to_index_on_html
