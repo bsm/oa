@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 
 desc 'Default: run specs.'
@@ -18,5 +19,3 @@ task :routes do
   inspector  = ActionDispatch::Routing::RoutesInspector.new(all_routes)
   puts inspector.format(ActionDispatch::Routing::ConsoleFormatter.new, ENV['CONTROLLER'])
 end
-
-Bundler::GemHelper.install_tasks

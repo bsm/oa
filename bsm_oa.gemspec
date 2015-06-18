@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = BsmOa::VERSION
   s.authors     = ['Andy Born', 'Dimitrij Denissenko']
   s.email       = 'info@blacksquaremedia.com'
-  s.homepage    = 'https://github.org/bsm/bsm_oa'
-  s.summary     = ''
-  s.description = ''
+  s.homepage    = 'https://github.org/bsm/oa'
+  s.summary     = 'Rails Open Authority engine'
+  s.description = 'Opinionated toolbox for building centralised authorities'
   s.licenses    = ['MIT']
 
   s.files         = `git ls-files`.split("\n")

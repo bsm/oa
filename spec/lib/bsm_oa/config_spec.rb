@@ -18,4 +18,3 @@ RSpec.describe BsmOa::Config do
   end
 
 end
-

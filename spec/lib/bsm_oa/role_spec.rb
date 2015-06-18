@@ -20,4 +20,3 @@ RSpec.describe BsmOa::Role, type: :model do
   end
 
 end
-
