@@ -17,12 +17,12 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'railties', '>= 4.1', '< 5.0'
-  s.add_dependency 'doorkeeper', '~> 2.2.1'
+  s.add_dependency 'doorkeeper', '~> 3.0.0.rc'
   s.add_dependency 'responders', '~> 2.0'
   s.add_dependency 'jbuilder', '~> 2.2'
   s.add_dependency 'bsm-models'
   s.add_dependency 'has_scope', '~> 0.6'
-  s.add_dependency 'simple_form', '~> 3.1.0'
+  s.add_dependency 'simple_form', '~> 3.1'
   s.add_dependency 'jquery-rails'
 
   s.add_development_dependency 'rails', '>= 4.1'
@@ -32,5 +32,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'json_spec'
   s.add_development_dependency 'faker'
   s.add_development_dependency 'shoulda-matchers'
+  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'sqlite3'
 end

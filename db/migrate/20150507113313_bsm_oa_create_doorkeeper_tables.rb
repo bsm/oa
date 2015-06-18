@@ -7,7 +7,7 @@ class BsmOaCreateDoorkeeperTables < ActiveRecord::Migration
       t.text    :redirect_uri, null: false
       t.string  :scopes,       null: false, default: ''
       t.text    :permissions
-      t.timestamps
+      t.timestamps null: false
     end
 
     add_index :oauth_applications, :uid, unique: true

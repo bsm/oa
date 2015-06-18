@@ -29,6 +29,7 @@ require 'shoulda-matchers'
 require 'json_spec'
 require 'factory_girl'
 require 'faker'
+require 'database_cleaner'
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
@@ -40,6 +41,15 @@ RSpec.configure do |config|
       ActiveRecord::Migrator.migrate(File.expand_path('../../db/migrate', __FILE__), nil)
     end
     FactoryGirl.find_definitions
+  end
+
+  config.before :suite do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.around :each do |example|
+    DatabaseCleaner.cleaning { example.run }
   end
 
   config.expect_with :rspec do |expectations|

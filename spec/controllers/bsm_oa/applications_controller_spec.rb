@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe BsmOa::ApplicationsController, type: :controller do
 
-  let(:user)         { create :user }
-  let!(:application) { create :application }
+  let(:user)        { create :user }
+  let(:application) { create :application }
 
   describe 'routing' do
     it { is_expected.to route(:get,  "/oauth/applications").to(action: :index) }
@@ -14,12 +14,9 @@ describe BsmOa::ApplicationsController, type: :controller do
     it { is_expected.to route(:delete, "/oauth/applications/1").to(action: :destroy, id: 1) }
   end
 
-  describe 'authorisation' do
-    pending "REVIEW!"
-  end
-
   describe 'GET index.json' do
     before do
+      application
       get :index, format: 'json'
     end
 
@@ -46,7 +43,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.json (successful)' do
     before do
-      post :create, format: 'json', doorkeeper_application: application.attributes
+      post :create, format: 'json', doorkeeper_application: attributes_for(:application)
     end
 
     it { expect(response.body).to have_json_size(6) }
@@ -55,7 +52,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.json (unsuccessful)' do
     before do
-      post :create, format: 'json', doorkeeper_application: application.attributes.merge(name: nil)
+      post :create, format: 'json', doorkeeper_application: attributes_for(:application, name: nil)
     end
 
     it { expect(response.body).to have_json_path('errors') }
@@ -64,7 +61,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.html' do
     before do
-      post :create, doorkeeper_application: application.attributes
+      post :create, doorkeeper_application: attributes_for(:application)
     end
 
     it { is_expected.to respond_with(:redirect) }
