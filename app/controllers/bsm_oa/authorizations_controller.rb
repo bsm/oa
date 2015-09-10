@@ -3,6 +3,8 @@
     respond_to :html
     respond_to :json, except: [:new, :edit]
     respond_to :js, only: [:toggle]
+
+    before_filter :authenticate_admin!
     before_filter :redirect_to_index_on_html, only: [:show]
 
     def index

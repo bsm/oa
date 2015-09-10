@@ -5,6 +5,8 @@ module BsmOa
 
     has_scope :ordered, default: true, only: [:index]
 
+    before_filter :authenticate_admin!
+
     def index
       @roles = apply_scopes(resource_scope)
       respond_with @roles
