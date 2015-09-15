@@ -6,12 +6,12 @@ describe BsmOa::ApplicationsController, type: :controller do
   let(:application) { create :application }
 
   describe 'routing' do
-    it { is_expected.to route(:get,  "/oauth/applications").to(action: :index) }
-    it { is_expected.to route(:post, "/oauth/applications").to(action: :create) }
-    it { is_expected.to route(:get,  "/oauth/applications/new").to(action: :new) }
-    it { is_expected.to route(:get,  "/oauth/applications/1").to(action: :show, id: 1) }
-    it { is_expected.to route(:put,  "/oauth/applications/1").to(action: :update, id: 1) }
-    it { is_expected.to route(:delete, "/oauth/applications/1").to(action: :destroy, id: 1) }
+    it { is_expected.to route(:get,     "/applications")      .to(action: :index) }
+    it { is_expected.to route(:post,    "/applications")      .to(action: :create) }
+    it { is_expected.to route(:get,     "/applications/new")  .to(action: :new) }
+    it { is_expected.to route(:get,     "/applications/1")    .to(action: :show, id: 1) }
+    it { is_expected.to route(:put,     "/applications/1")    .to(action: :update, id: 1) }
+    it { is_expected.to route(:delete,  "/applications/1")    .to(action: :destroy, id: 1) }
   end
 
   describe 'GET index.json' do
@@ -38,7 +38,7 @@ describe BsmOa::ApplicationsController, type: :controller do
       get :show, format: 'html', id: application.to_param
     end
 
-    it { is_expected.to redirect_to("http://test.host/oauth/applications") }
+    it { is_expected.to redirect_to("http://test.host/applications") }
   end
 
   describe 'POST create.json (successful)' do
@@ -65,7 +65,7 @@ describe BsmOa::ApplicationsController, type: :controller do
     end
 
     it { is_expected.to respond_with(:redirect) }
-    it { is_expected.to redirect_to("http://test.host/oauth/applications/#{Doorkeeper::Application.last.to_param}") }
+    it { is_expected.to redirect_to("http://test.host/applications/#{Doorkeeper::Application.last.to_param}") }
   end
 
   describe 'PUT update.json (successful)' do
@@ -92,7 +92,7 @@ describe BsmOa::ApplicationsController, type: :controller do
     end
 
     it { is_expected.to respond_with(:redirect) }
-    it { is_expected.to redirect_to("http://test.host/oauth/applications/#{application.to_param}") }
+    it { is_expected.to redirect_to("http://test.host/applications/#{application.to_param}") }
   end
 
   describe 'DELETE destroy.json' do
@@ -109,6 +109,6 @@ describe BsmOa::ApplicationsController, type: :controller do
     end
 
     it { is_expected.to respond_with(:redirect) }
-    it { is_expected.to redirect_to("http://test.host/oauth/applications") }
+    it { is_expected.to redirect_to("http://test.host/applications") }
   end
 end

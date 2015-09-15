@@ -19,7 +19,7 @@ module BsmOa
             put :toggle, on: :member, path: "toggle/:permission"
           end
         end
-        use_doorkeeper do
+        use_doorkeeper scope: "" do
           controllers applications: 'bsm_oa/applications'
           skip_controllers :authorized_applications, :authorizations, :tokens
         end
