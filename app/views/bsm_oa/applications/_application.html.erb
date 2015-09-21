@@ -9,7 +9,7 @@
       <span class="label label-info"><%= "#{pm}" %></span>
     <% end %>
   <td>
-    <%= link_to t('doorkeeper.applications.buttons.edit'), edit_oauth_application_path(application), class: 'btn btn-default btn-xs' %>
-    <%= link_to 'Delete', oauth_application_path(application), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default btn-xs'%>
+    <%= link_to t('doorkeeper.applications.buttons.edit'), edit_doorkeeper_application_path(application), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'Delete', application, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default btn-xs'%>
   </td>
 </tr>

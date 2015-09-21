@@ -15,5 +15,10 @@ module BsmOa
       @user_attrs ||= [:id, :email]
     end
 
+    def parent_controller(name = nil)
+      @parent_controller = name if name
+      @parent_controller ||= "ApplicationController"
+    end
+
   end
 end

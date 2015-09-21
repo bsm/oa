@@ -15,11 +15,9 @@ module BsmOa
 
     initializer "bsm_oa.models" do
       ActiveSupport.on_load(:active_record) do
-        require 'bsm_oa/application_mixin'
-        require 'bsm_oa/authorization'
+        require 'bsm_oa/application'
         require 'bsm_oa/role'
-
-        Doorkeeper::Application.send :include, ApplicationMixin
+        require 'bsm_oa/authorization'
       end
     end
 

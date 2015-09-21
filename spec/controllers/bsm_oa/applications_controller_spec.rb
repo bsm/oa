@@ -43,7 +43,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.json (successful)' do
     before do
-      post :create, format: 'json', doorkeeper_application: attributes_for(:application)
+      post :create, format: 'json', bsm_oa_application: attributes_for(:application)
     end
 
     it { expect(response.body).to have_json_size(6) }
@@ -52,7 +52,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.json (unsuccessful)' do
     before do
-      post :create, format: 'json', doorkeeper_application: attributes_for(:application, name: nil)
+      post :create, format: 'json', bsm_oa_application: attributes_for(:application, name: nil)
     end
 
     it { expect(response.body).to have_json_path('errors') }
@@ -61,16 +61,16 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.html' do
     before do
-      post :create, doorkeeper_application: attributes_for(:application)
+      post :create, bsm_oa_application: attributes_for(:application)
     end
 
     it { is_expected.to respond_with(:redirect) }
-    it { is_expected.to redirect_to("http://test.host/applications/#{Doorkeeper::Application.last.to_param}") }
+    it { is_expected.to redirect_to("http://test.host/applications/#{BsmOa::Application.last.to_param}") }
   end
 
   describe 'PUT update.json (successful)' do
     before do
-      put :update, format: 'json', id: application.to_param, doorkeeper_application: application.attributes
+      put :update, format: 'json', id: application.to_param, bsm_oa_application: application.attributes
     end
 
     it { expect(response.body).to have_json_size(6) }
@@ -79,7 +79,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'PUT update.json (unsuccessful)' do
     before do
-      put :update, format: 'json', id: application.to_param, doorkeeper_application: application.attributes.merge(name: nil)
+      put :update, format: 'json', id: application.to_param, bsm_oa_application: application.attributes.merge(name: nil)
     end
 
     it { expect(response.body).to have_json_path('errors') }
@@ -88,7 +88,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'PUT update.html' do
     before do
-      put :update, id: application.to_param, doorkeeper_application: application.attributes
+      put :update, id: application.to_param, bsm_oa_application: application.attributes
     end
 
     it { is_expected.to respond_with(:redirect) }

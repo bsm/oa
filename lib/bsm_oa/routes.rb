@@ -8,20 +8,34 @@ module BsmOa
     module Helper
 
       def mount_bsm_oa
+        mount_bsm_oa_me
         mount_bsm_oa_admin
         mount_bsm_oa_callbacks
       end
 
       def mount_bsm_oa_admin
+        mount_bsm_oa_applications
+        mount_bsm_oa_roles
+        mount_bsm_oa_authorizations
+      end
+
+      def mount_bsm_oa_me
         get 'me(.:format)', to: 'bsm_oa/accounts#show', as: :bsm_oa_me
-        resources :roles, controller: 'bsm_oa/roles', as: :bsm_oa_roles do
+      end
+
+      def mount_bsm_oa_applications
+        resources :applications, controller: 'bsm_oa/applications', as: :bsm_oa_applications
+      end
+
+      def mount_bsm_oa_roles
+        resources :roles, controller: 'bsm_oa/roles', as: :bsm_oa_roles
+      end
+
+      def mount_bsm_oa_authorizations
+        resources :roles, only: [], as: :bsm_oa_roles do
           resources :authorizations, controller: 'bsm_oa/authorizations', as: :bsm_oa_authorizations, shallow: true do
             put :toggle, on: :member, path: "toggle/:permission"
           end
-        end
-        use_doorkeeper scope: "" do
-          controllers applications: 'bsm_oa/applications'
-          skip_controllers :authorized_applications, :authorizations, :tokens
         end
       end
 

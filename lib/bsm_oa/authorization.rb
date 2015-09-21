@@ -4,7 +4,7 @@ module BsmOa
 
     # ---> ASSOCIATIONS
     belongs_to :role, inverse_of: :authorizations
-    belongs_to :application, inverse_of: :authorizations, class_name: Doorkeeper::Application, foreign_key: :application_id
+    belongs_to :application, inverse_of: :authorizations, class_name: 'BsmOa::Application', foreign_key: :application_id
 
     # ---> ATTRIBUTES
     serialize :permissions, Bsm::Model::Coders::JsonColumn.new(Array)

@@ -6,6 +6,6 @@
 </div>
 
 <%= simple_form_for [@parent, @authorization], url: bsm_oa_role_bsm_oa_authorizations_url do |f| %>
-  <%= f.association :application, as: :select, collection: Doorkeeper::Application.ordered, prompt: true %>
+  <%= f.association :application, as: :select, collection: BsmOa::Application.ordered, prompt: true %>
   <%= f.button :submit %>
 <% end %>

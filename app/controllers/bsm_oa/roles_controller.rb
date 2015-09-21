@@ -1,11 +1,10 @@
 module BsmOa
-  class RolesController < Doorkeeper::ApplicationController
+  class RolesController < BaseController
     respond_to :html
     respond_to :json, except: [:new, :edit]
 
-    has_scope :ordered, default: true, only: [:index]
-
     before_filter :authenticate_admin!
+    has_scope     :ordered, default: true, only: [:index]
 
     def index
       @roles = apply_scopes(resource_scope)

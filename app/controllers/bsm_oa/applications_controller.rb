@@ -1,34 +1,65 @@
 module BsmOa
-  class ApplicationsController < Doorkeeper::ApplicationsController
-    respond_to :html, :json
+  class ApplicationsController < BaseController
+    respond_to :html
+    respond_to :json, except: [:new, :edit]
+
+    before_filter :authenticate_admin!
     before_filter :redirect_to_index_on_html, only: [:show]
+    has_scope     :ordered, default: true, only: [:index]
+
+    def index
+      @applications = apply_scopes(resource_scope)
+      respond_with @applications
+    end
+
+    def show
+      respond_with resource
+    end
+
+    def new
+      @application = resource_scope.new
+      respond_with @application
+    end
+
+    def edit
+      respond_with resource
+    end
 
     def create
-      @application = Doorkeeper::Application.create(application_params)
-      location = oauth_application_path(@application) if @application.persisted?
-      respond_with @application, location: location
+      @application = resource_scope.create permitted_params
+      respond_with @application
     end
 
     def update
-      @application.update(application_params)
-      respond_with @application, location: oauth_application_path(@application)
+      resource.update(permitted_params)
+      respond_with resource
     end
 
     def destroy
-      respond_with @application, location: oauth_applications_path
+      resource.destroy
+      respond_with resource, location: bsm_oa_applications_path
     end
 
     protected
 
-      def application_params
-        params.require(:doorkeeper_application).permit(:name, :redirect_uri, :permissions, :uid, :secret)
+      def resource
+        @application ||= resource_scope.find params[:id]
+      end
+
+      # @return [ActiveRecord::Relation]
+      def resource_scope
+        BsmOa::Application.all
+      end
+
+      def permitted_params
+        params.require(:bsm_oa_application).permit(:name, :redirect_uri, :permissions, :uid, :secret)
       end
 
       def redirect_to_index_on_html
         return unless request.format.html?
 
         flash.keep
-        redirect_to oauth_applications_path
+        redirect_to bsm_oa_applications_path
       end
 
   end

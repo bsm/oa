@@ -4,7 +4,7 @@ module BsmOa
 
     # ---> ASSOCIATIONS
     has_many :authorizations, inverse_of: :role, dependent: :destroy
-    has_many :applications, inverse_of: :roles, class_name: Doorkeeper::Application, through: :authorizations, foreign_key: :application_id
+    has_many :applications, inverse_of: :roles, class_name: 'BsmOa::Application', through: :authorizations, foreign_key: :application_id
 
     # ---> VALIDATIONS
     validates :name,

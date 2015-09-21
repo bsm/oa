@@ -1,6 +1,6 @@
 FactoryGirl.define do
 
-  factory :application, class: Doorkeeper::Application do
+  factory :application, class: BsmOa::Application do
     sequence(:name) { |n| "Application #{n}" }
     redirect_uri 'https://app.com/callback'
     permissions ['admin', 'finance', 'operations']

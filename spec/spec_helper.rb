@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   has_many :authorizations, through: :roles, class_name: "BsmOa::Authorization"
 end
 
+# ApplicationController
+class ApplicationController < ActionController::Base
+end
+
 # Load rspec
 require 'rspec/rails'
 require 'shoulda-matchers'

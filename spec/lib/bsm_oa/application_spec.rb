@@ -1,6 +1,12 @@
 require 'spec_helper'
 
-describe Doorkeeper::Application, type: :model do
+describe BsmOa::Application, type: :model do
+
+  it { is_expected.to be_kind_of(Doorkeeper::Application) }
+
+  it 'should a custom model name' do
+    expect(described_class.model_name.route_key).to eq("bsm_oa_applications")
+  end
 
   it { is_expected.to have_many(:authorizations).dependent(:destroy) }
   it { is_expected.to have_many(:roles).through(:authorizations) }

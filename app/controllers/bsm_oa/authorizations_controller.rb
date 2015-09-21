@@ -1,5 +1,5 @@
  module BsmOa
-  class AuthorizationsController < Doorkeeper::ApplicationController
+  class AuthorizationsController < BaseController
     respond_to :html
     respond_to :json, except: [:new, :edit]
     respond_to :js, only: [:toggle]
