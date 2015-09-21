@@ -71,7 +71,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'POST create.json (successful)' do
     before do
       role = create(:role)
-      post :create, format: 'json', bsm_oa_role_id: role.to_param, authorization: resource.attributes.merge( permissions_string: 'admin')
+      post :create, format: 'json', bsm_oa_role_id: role.to_param, authorization: resource.attributes.merge( permissions: 'admin')
     end
 
     it { is_expected.to respond_with(:created) }
@@ -81,7 +81,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'POST create.html (successful)' do
     before do
       role = create(:role)
-      post :create, authorization: resource.attributes.merge( permissions_string: 'admin'), bsm_oa_role_id: role.to_param
+      post :create, authorization: resource.attributes.merge( permissions: 'admin'), bsm_oa_role_id: role.to_param
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -100,7 +100,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT update.html (successful)' do
     before do
-      put :update, id: resource.to_param, authorization: { permissions_string: 'admin' }
+      put :update, id: resource.to_param, authorization: { permissions: 'admin' }
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -118,7 +118,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT update.json (successful)' do
     before do
-      put :update, format: 'json', id: resource.to_param, authorization: { permissions_string: 'admin' }
+      put :update, format: 'json', id: resource.to_param, authorization: { permissions: 'admin' }
     end
 
     it { is_expected.to respond_with(:no_content) }

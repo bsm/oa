@@ -21,21 +21,13 @@ module BsmOa
     scope :ordered, -> { order(id: :desc) }
 
     # @param [String] name permission name
-    def toggle(name)
-      if permissions.include?(name)
-        self.permissions = permissions - [name]
-      else
-        self.permissions = permissions + [name]
-      end
-      save
+    def toggle_permission!(name)
+      update permissions: (permissions.include?(name) ? permissions - [name] : permissions + [name])
     end
 
-    def permissions_string=(str)
-      self.permissions = str.split("\s")
-    end
-
-    def permissions_string
-      permissions.sort.join(' ')
+    # @param [Array|String] permissions
+    def permissions=(vals)
+      super Array.wrap(vals).map {|s| s.to_s.split(/[\s,]+/) }.flatten
     end
 
     protected

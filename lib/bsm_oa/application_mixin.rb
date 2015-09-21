@@ -14,12 +14,9 @@ module BsmOa
       scope :ordered, -> { order(:name) }
     end
 
-    def permissions_string=(permissions_string)
-      self.permissions = permissions_string.split(/\W+/)
-    end
-
-    def permissions_string
-      permissions.sort.join(' ')
+    # @param [Array|String] permissions
+    def permissions=(vals)
+      super Array.wrap(vals).map {|s| s.to_s.split(/[\s,]+/) }.flatten
     end
 
     protected

@@ -17,17 +17,13 @@ RSpec.describe BsmOa::Authorization, type: :model do
 
   it { is_expected.to serialize(:permissions) }
 
-  it 'should set and return string of permissions' do
-    subject = create(:authorization)
-    subject.permissions_string = 'admin operations finance'
+  it 'should all to assign a string of permissions' do
+    subject = build(:authorization, permissions: 'admin operations finance')
     expect(subject.permissions).to eq ['admin', 'operations', 'finance']
-    expect(subject.permissions_string).to eq 'admin finance operations'
   end
 
   it 'should normalize permissions' do
-    subject = create(:authorization)
-    subject.permissions = ["admin ", "Finance", "operatiOns", "unknown"]
-    expect(subject).to be_valid
+    subject = create(:authorization, permissions: ["admin ", "Finance", "operatiOns", "unknown"])
     expect(subject.permissions).to eq ['admin', 'finance', 'operations']
   end
 
@@ -40,11 +36,11 @@ RSpec.describe BsmOa::Authorization, type: :model do
     let(:authorization) { create :authorization}
 
     it 'should toggle adding permissions' do
-      authorization.toggle('finance')
+      authorization.toggle_permission!('finance')
       expect(authorization.reload.permissions).to eq(['admin', 'finance'])
     end
     it 'should toggle removing permissions' do
-      authorization.toggle('admin')
+      authorization.toggle_permission!('admin')
       expect(authorization.reload.permissions).to eq([])
     end
   end

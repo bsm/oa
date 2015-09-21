@@ -40,7 +40,7 @@
 
     def toggle
       @authorization = resource_scope.find params[:id]
-      @authorization.toggle(params[:permission])
+      @authorization.toggle_permission!(params[:permission])
       respond_with @authorization
     end
 
@@ -67,7 +67,7 @@
     end
 
     def permitted_params
-      params.require(:authorization).permit :application_id, :permissions_string, :uid, :secret
+      params.require(:authorization).permit :application_id, :uid, :secret
     end
 
     def redirect_to_index_on_html
