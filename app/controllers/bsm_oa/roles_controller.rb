@@ -1,10 +1,8 @@
 module BsmOa
-  class RolesController < BaseController
+  class RolesController < AdminController
     respond_to :html
     respond_to :json, except: [:new, :edit]
-
-    before_filter :authenticate_admin!
-    has_scope     :ordered, default: true, only: [:index]
+    has_scope  :ordered, default: true, only: [:index]
 
     def index
       @roles = apply_scopes(resource_scope)

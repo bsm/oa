@@ -1,11 +1,10 @@
 module BsmOa
-  class ApplicationsController < BaseController
+  class ApplicationsController < AdminController
     respond_to :html
     respond_to :json, except: [:new, :edit]
+    has_scope  :ordered, default: true, only: [:index]
 
-    before_filter :authenticate_admin!
     before_filter :redirect_to_index_on_html, only: [:show]
-    has_scope     :ordered, default: true, only: [:index]
 
     def index
       @applications = apply_scopes(resource_scope)
