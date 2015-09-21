@@ -34,7 +34,7 @@
     def update
       @authorization = resource_scope.find params[:id]
       @authorization.update(permitted_params)
-      respond_with @authorization, location: bsm_oa_authorization_path(@authorization)
+      respond_with @authorization
     end
 
     def toggle
@@ -46,7 +46,7 @@
     def destroy
       @authorization = resource_scope.find params[:id]
       @authorization.destroy
-      respond_with @authorization, location: bsm_oa_authorization_path(@authorization)
+      respond_with @authorization, location: @authorization.role
     end
 
     protected
@@ -66,7 +66,7 @@
     end
 
     def permitted_params
-      params.require(:authorization).permit :application_id, :uid, :secret
+      params.require(:bsm_oa_authorization).permit :application_id, :uid, :secret
     end
 
     def redirect_to_index_on_html

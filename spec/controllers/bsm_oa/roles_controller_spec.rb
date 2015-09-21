@@ -33,7 +33,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'POST create.json (successful)' do
     before do
-      post :create, format: 'json', role: resource.attributes.merge(name: "admin")
+      post :create, format: 'json', bsm_oa_role: resource.attributes.merge(name: "admin")
     end
 
     it { is_expected.to respond_with(:created) }
@@ -41,7 +41,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'PUT update.json (successful)' do
     before do
-      put :update, format: 'json', id: resource.to_param, role: { name: "newname"}
+      put :update, format: 'json', id: resource.to_param, bsm_oa_role: { name: "newname"}
     end
 
     it { is_expected.to respond_with(:no_content) }
@@ -83,7 +83,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'POST create.html (successful)' do
     before do
-      post :create, role: resource.attributes.merge(name: "newname")
+      post :create, bsm_oa_role: resource.attributes.merge(name: "newname")
     end
     it { is_expected.to respond_with(:redirect) }
     it { is_expected.to redirect_to("http://test.host/roles/#{BsmOa::Role.last.to_param}") }
@@ -91,7 +91,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'POST create.html (unsuccessful)' do
     before do
-      post :create, role: resource.attributes
+      post :create, bsm_oa_role: resource.attributes
     end
 
     it { is_expected.to respond_with(:success) }
@@ -100,7 +100,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'PUT update.html (successful)' do
     before do
-      post :update, id: resource.to_param, role: { name: "newname"}
+      post :update, id: resource.to_param, bsm_oa_role: { name: "newname"}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -109,7 +109,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'PUT update.html (unsuccessful)' do
     before do
-      put :update, id: resource.to_param, role: { name: "" }
+      put :update, id: resource.to_param, bsm_oa_role: { name: "" }
     end
 
     it { is_expected.to respond_with(:success) }

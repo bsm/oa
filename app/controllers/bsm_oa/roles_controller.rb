@@ -50,7 +50,7 @@ module BsmOa
     end
 
     def permitted_params
-      params.require(:role).permit :name, :description
+      params.require(:bsm_oa_role).permit :name, :description
     end
 
   end
