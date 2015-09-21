@@ -20,7 +20,6 @@ describe BsmOa::ApplicationsController, type: :controller do
       get :index, format: 'json'
     end
 
-    it { expect(response.body).to have_json_size(1) }
     it { is_expected.to respond_with(:success) }
   end
 
@@ -29,7 +28,6 @@ describe BsmOa::ApplicationsController, type: :controller do
       get :show, format: 'json', id: application.to_param
     end
 
-    it { expect(response.body).to have_json_size(6) }
     it { is_expected.to respond_with(:success) }
   end
 
@@ -46,8 +44,7 @@ describe BsmOa::ApplicationsController, type: :controller do
       post :create, format: 'json', bsm_oa_application: attributes_for(:application)
     end
 
-    it { expect(response.body).to have_json_size(6) }
-    it { is_expected.to respond_with(:success) }
+    it { is_expected.to respond_with(:created) }
   end
 
   describe 'POST create.json (unsuccessful)' do
@@ -55,7 +52,6 @@ describe BsmOa::ApplicationsController, type: :controller do
       post :create, format: 'json', bsm_oa_application: attributes_for(:application, name: nil)
     end
 
-    it { expect(response.body).to have_json_path('errors') }
     it { is_expected.to respond_with(:unprocessable_entity) }
   end
 
@@ -73,8 +69,7 @@ describe BsmOa::ApplicationsController, type: :controller do
       put :update, format: 'json', id: application.to_param, bsm_oa_application: application.attributes
     end
 
-    it { expect(response.body).to have_json_size(6) }
-    it { is_expected.to respond_with(:success) }
+    it { is_expected.to respond_with(:no_content) }
   end
 
   describe 'PUT update.json (unsuccessful)' do
@@ -82,7 +77,6 @@ describe BsmOa::ApplicationsController, type: :controller do
       put :update, format: 'json', id: application.to_param, bsm_oa_application: application.attributes.merge(name: nil)
     end
 
-    it { expect(response.body).to have_json_path('errors') }
     it { is_expected.to respond_with(:unprocessable_entity) }
   end
 

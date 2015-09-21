@@ -12,9 +12,6 @@ Combustion.initialize! :active_record do
     orm :active_record
   end
 
-  SimpleForm.setup do |_|
-  end
-
 end
 
 # Internal app
@@ -30,7 +27,6 @@ end
 # Load rspec
 require 'rspec/rails'
 require 'shoulda-matchers'
-require 'json_spec'
 require 'factory_girl'
 require 'faker'
 require 'database_cleaner'
@@ -64,5 +60,4 @@ RSpec.configure do |config|
   end
 
   config.include FactoryGirl::Syntax::Methods
-  config.include JsonSpec::Helpers
 end

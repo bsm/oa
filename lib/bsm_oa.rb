@@ -1,9 +1,7 @@
 require 'doorkeeper'
 require 'bsm-models'
 require 'responders'
-require 'jbuilder'
 require 'has_scope'
-require 'simple_form'
 
 require 'bsm_oa/version'
 require 'bsm_oa/engine'

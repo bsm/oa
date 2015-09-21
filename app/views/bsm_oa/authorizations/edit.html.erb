@@ -5,6 +5,6 @@
   <h1>Edit Authorization</h1>
 </div>
 
-<%= simple_form_for @authorization, url: bsm_oa_authorization_url do |f| %>
+<%= form_for @authorization, url: bsm_oa_authorization_url do |f| %>
   <%= render 'inputs', f: f %>
 <% end %>

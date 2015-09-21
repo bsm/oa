@@ -23,8 +23,6 @@ describe BsmOa::AuthorizationsController, type: :controller do
     end
 
     it { is_expected.to respond_with(:success) }
-    it { expect(response.body).to have_json_size(1) }
-    it { expect(response.body).to have_json_size(3).at_path('0') }
   end
 
   describe 'GET index.html' do
@@ -57,7 +55,6 @@ describe BsmOa::AuthorizationsController, type: :controller do
       get :show, id: resource.to_param, format: "json"
     end
     it { is_expected.to respond_with(:success) }
-    it { expect(response.body).to have_json_size(4) }
   end
 
   describe 'GET edit.html' do
@@ -75,7 +72,6 @@ describe BsmOa::AuthorizationsController, type: :controller do
     end
 
     it { is_expected.to respond_with(:created) }
-    it { expect(response.body).to have_json_size(4) }
   end
 
   describe 'POST create.html (successful)' do
@@ -155,8 +151,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
       put :toggle, id: resource.to_param, permission: "admin", format: "json"
     end
 
-    it { is_expected.to respond_with(:success) }
-    it { expect(response.body).to have_json_size(4) }
+    it { is_expected.to respond_with(:no_content) }
   end
 
 end

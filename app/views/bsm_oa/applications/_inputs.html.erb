@@ -1,11 +1,6 @@
-<%= f.input :name, placeholder: "Enter name"%>
-
-<%= f.input :uid, placeholder: "Enter application UID"%>
-
-<%= f.input :secret, placeholder: "Enter application secret"%>
-
-<%= f.input :redirect_uri, placeholder: "Enter redirect url"%>
-
-<%= f.input :permissions_string, placeholder: "Enter comma separated permissions"%>
-
-<%= f.button :submit %>
+<%= f.text_field :name, placeholder: "Enter name"%>
+<%= f.text_field :uid, placeholder: "Enter application UID"%>
+<%= f.password_field :secret, placeholder: "Enter application secret"%>
+<%= f.url_field :redirect_uri, placeholder: "Enter redirect url"%>
+<%= f.text_field :permissions, placeholder: "Enter comma separated permissions"%>
+<%= f.submit %>

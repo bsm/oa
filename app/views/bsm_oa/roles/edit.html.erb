@@ -5,6 +5,6 @@
   <h1>Edit Role</h1>
 </div>
 
-<%= simple_form_for @role, url: bsm_oa_role_url(@role) do |f| %>
+<%= form_for @role, url: bsm_oa_role_url(@role) do |f| %>
   <%= render 'inputs', f: f %>
 <% end %>

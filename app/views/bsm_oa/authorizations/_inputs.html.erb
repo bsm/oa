@@ -1,2 +1,2 @@
-<%= f.association :application, as: :select, collection: BsmOa::Application.ordered, prompt: true %>
-<%= f.button :submit %>
+<%= f.collection_select :application_id, BsmOa::Application.ordered, :id, :name, prompt: true %>
+<%= f.submit %>

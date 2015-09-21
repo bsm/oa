@@ -21,7 +21,6 @@ describe BsmOa::RolesController, type: :controller do
     end
 
     it { is_expected.to respond_with(:success) }
-    it { expect(response.body).to have_json_size(1) }
   end
 
   describe 'GET show.json' do
@@ -30,7 +29,6 @@ describe BsmOa::RolesController, type: :controller do
     end
 
     it { is_expected.to respond_with(:success) }
-    it { expect(response.body).to have_json_size(2) }
   end
 
   describe 'POST create.json (successful)' do
@@ -38,15 +36,15 @@ describe BsmOa::RolesController, type: :controller do
       post :create, format: 'json', role: resource.attributes.merge(name: "admin")
     end
 
-    it { is_expected.to respond_with(:success) }
+    it { is_expected.to respond_with(:created) }
   end
 
   describe 'PUT update.json (successful)' do
     before do
-      post :update, format: 'json', id: resource.to_param, role: { name: "newname"}
+      put :update, format: 'json', id: resource.to_param, role: { name: "newname"}
     end
 
-    it { is_expected.to respond_with(:success) }
+    it { is_expected.to respond_with(:no_content) }
   end
 
   describe 'GET index.html' do

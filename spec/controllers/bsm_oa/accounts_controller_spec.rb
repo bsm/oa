@@ -17,9 +17,6 @@ describe BsmOa::AccountsController, type: :controller do
       get :show, client_id: application.uid, client_secret: application.secret, format: 'json'
     end
 
-    it { expect(response.body).to have_json_size(3) }
-    it { expect(response.body).to have_json_size(1).at_path('authorizations') }
-    it { expect(response.body).to have_json_size(2).at_path('authorizations/0') }
     it { is_expected.to respond_with(:success) }
   end
 
