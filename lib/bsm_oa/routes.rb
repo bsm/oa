@@ -20,7 +20,7 @@ module BsmOa
       end
 
       def mount_bsm_oa_me
-        get 'me(.:format)', to: 'bsm_oa/accounts#show', as: :bsm_oa_me
+        get 'me(.:format)', to: BsmOa::AccountsController.action(:show), as: :bsm_oa_me
       end
 
       def mount_bsm_oa_applications
