@@ -36,7 +36,7 @@ describe BsmOa::ApplicationsController, type: :controller do
       get :show, format: 'html', id: application.to_param
     end
 
-    it { is_expected.to redirect_to("http://test.host/applications") }
+    it { is_expected.to respond_with(:success) }
   end
 
   describe 'POST create.json (successful)' do

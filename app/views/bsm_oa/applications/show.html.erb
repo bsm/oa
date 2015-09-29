@@ -1,0 +1,40 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to "&larr; Back".html_safe, bsm_oa_applications_path, class: 'btn btn-lg btn-default'%>
+  </div>
+  <h1><%= @application.name %></h1>
+</div>
+
+<h3>Details</h3>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Name:</th>
+      <td><%= @application.name %></td>
+    </tr>
+    <tr>
+      <th>Callback URL:</th>
+      <td>
+        <%= @application.redirect_uri %>
+      </td>
+    </tr>
+    <tr>
+      <th>Permissions:</th>
+      <td>
+        <%= @application.permissions.to_sentence %>
+      </td>
+    </tr>
+    <tr>
+      <th>UID:</th>
+      <td>
+        <%= @application.uid %>
+      </td>
+    </tr>
+    <tr>
+      <th>Secret:</th>
+      <td>
+        <%= @application.secret %>
+      </td>
+    </tr>
+  </table>
+</div>

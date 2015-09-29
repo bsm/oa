@@ -4,8 +4,6 @@ module BsmOa
     respond_to :json, except: [:new, :edit]
     has_scope  :ordered, default: true, only: [:index]
 
-    before_filter :redirect_to_index_on_html, only: [:show]
-
     def index
       @applications = apply_scopes(resource_scope)
       respond_with @applications
@@ -52,13 +50,6 @@ module BsmOa
 
       def permitted_params
         params.require(:bsm_oa_application).permit(:name, :redirect_uri, :permissions, :uid, :secret)
-      end
-
-      def redirect_to_index_on_html
-        return unless request.format.html?
-
-        flash.keep
-        redirect_to bsm_oa_applications_path
       end
 
   end
