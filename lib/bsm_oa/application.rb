@@ -4,7 +4,7 @@ module BsmOa
     has_many :authorizations, class_name: 'BsmOa::Authorization', inverse_of: :application, dependent: :destroy
     has_many :roles, inverse_of: :applications, class_name: 'BsmOa::Role', through: :authorizations, foreign_key: :role_id
 
-    serialize :permissions, Bsm::Model::Coders::JsonColumn.new(Array)
+    serialize :permissions, JSON
     validate  :must_have_simple_word_permissions
 
     before_validation :normalize_permissions!

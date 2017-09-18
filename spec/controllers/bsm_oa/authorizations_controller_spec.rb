@@ -19,7 +19,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'GET index.json' do
     before do
       resource
-      get :index, bsm_oa_role_id: role.to_param, format: 'json'
+      get :index, params: {bsm_oa_role_id: role.to_param, format: 'json'}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -28,7 +28,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'GET index.html' do
     before do
       resource
-      get :index, bsm_oa_role_id: role.to_param
+      get :index, params: {bsm_oa_role_id: role.to_param}
     end
 
     it { is_expected.to render_template(:index) }
@@ -37,7 +37,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'GET new.html' do
     before do
-      get :new, bsm_oa_role_id: role.to_param
+      get :new, params: {bsm_oa_role_id: role.to_param}
     end
     it { is_expected.to render_template(:new) }
     it { is_expected.to respond_with(:success) }
@@ -45,21 +45,21 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'GET show.html' do
     before do
-      get :show, id: resource.to_param
+      get :show, params: {id: resource.to_param}
     end
     it { is_expected.to redirect_to("/roles/#{resource.role.to_param}") }
   end
 
   describe 'GET show.json' do
     before do
-      get :show, id: resource.to_param, format: "json"
+      get :show, params: {id: resource.to_param, format: "json"}
     end
     it { is_expected.to respond_with(:success) }
   end
 
   describe 'GET edit.html' do
     before do
-      get :edit, id: resource.to_param
+      get :edit, params: {id: resource.to_param}
     end
     it { is_expected.to render_template(:edit) }
     it { is_expected.to respond_with(:success) }
@@ -68,7 +68,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'POST create.json (successful)' do
     before do
       role = create(:role)
-      post :create, format: 'json', bsm_oa_role_id: role.to_param, bsm_oa_authorization: resource.attributes.merge( permissions: 'admin')
+      post :create, params: {format: 'json', bsm_oa_role_id: role.to_param, bsm_oa_authorization: resource.attributes.merge( permissions: 'admin')}
     end
 
     it { is_expected.to respond_with(:created) }
@@ -77,7 +77,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'POST create.html (successful)' do
     before do
       role = create(:role)
-      post :create, bsm_oa_authorization: resource.attributes.merge( permissions: 'admin'), bsm_oa_role_id: role.to_param
+      post :create, params: {bsm_oa_authorization: resource.attributes.merge( permissions: 'admin'), bsm_oa_role_id: role.to_param}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -87,7 +87,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
   describe 'POST create.html (unsuccessful)' do
     before do
       role = create(:role)
-      post :create, bsm_oa_role_id: role.to_param, bsm_oa_authorization: { application_id: '' }
+      post :create, params: {bsm_oa_role_id: role.to_param, bsm_oa_authorization: { application_id: '' }}
      end
 
     it { is_expected.to respond_with(:success) }
@@ -96,7 +96,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT update.html (successful)' do
     before do
-      put :update, id: resource.to_param, bsm_oa_authorization: { permissions: 'admin' }
+      put :update, params: {id: resource.to_param, bsm_oa_authorization: { permissions: 'admin' }}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -105,7 +105,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT update.html (unsuccessful)' do
     before do
-      put :update, id: resource.to_param, bsm_oa_authorization: { application_id: '0' }
+      put :update, params: {id: resource.to_param, bsm_oa_authorization: { application_id: '0' }}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -114,7 +114,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT update.json (successful)' do
     before do
-      put :update, format: 'json', id: resource.to_param, bsm_oa_authorization: { permissions: 'admin' }
+      put :update, params: {format: 'json', id: resource.to_param, bsm_oa_authorization: { permissions: 'admin' }}
     end
 
     it { is_expected.to respond_with(:no_content) }
@@ -122,7 +122,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT update.json (unsuccessful)' do
     before do
-      put :update, format: 'json', id: resource.to_param, bsm_oa_authorization: { application_id: '0' }
+      put :update, params: {format: 'json', id: resource.to_param, bsm_oa_authorization: { application_id: '0' }}
     end
 
     it { is_expected.to respond_with(:unprocessable_entity) }
@@ -130,7 +130,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT toggle' do
     before do
-      put :toggle, id: resource.to_param, permission: "admin"
+      put :toggle, params: {id: resource.to_param, permission: "admin"}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -139,7 +139,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT toggle.js' do
     before do
-      put :toggle, id: resource.to_param, permission: "admin", format: "js"
+      put :toggle, params: {id: resource.to_param, permission: "admin", format: "js"}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -148,7 +148,7 @@ describe BsmOa::AuthorizationsController, type: :controller do
 
   describe 'PUT toggle.json' do
     before do
-      put :toggle, id: resource.to_param, permission: "admin", format: "json"
+      put :toggle, params: {id: resource.to_param, permission: "admin", format: "json"}
     end
 
     it { is_expected.to respond_with(:no_content) }

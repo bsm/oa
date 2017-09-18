@@ -1,4 +1,4 @@
-class BsmOaCreateTables < ActiveRecord::Migration
+class BsmOaCreateTables < ActiveRecord::Migration[5.0]
   def change
     create_table :bsm_oa_authorizations do |t|
       t.integer :role_id, null: false

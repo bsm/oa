@@ -7,7 +7,7 @@ RSpec.describe BsmOa::Role, type: :model do
 
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_length_of(:name).is_at_most(80) }
-  it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
+  it { create(:role); is_expected.to validate_uniqueness_of(:name).case_insensitive }
 
   it 'should have ordered scope' do
     create(:role)

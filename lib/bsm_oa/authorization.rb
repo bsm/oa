@@ -7,7 +7,7 @@ module BsmOa
     belongs_to :application, inverse_of: :authorizations, class_name: 'BsmOa::Application', foreign_key: :application_id
 
     # ---> ATTRIBUTES
-    serialize :permissions, Bsm::Model::Coders::JsonColumn.new(Array)
+    serialize :permissions, JSON
     attr_readonly :application_id, :role_id, :application
 
     # ---> VALIDATIONS
@@ -33,6 +33,7 @@ module BsmOa
     protected
 
       def normalize_permissions!
+        self.permissions ||= []
         self.permissions = permissions.reject(&:blank?).map(&:strip).map(&:downcase).uniq
         self.permissions &= application.permissions if application
       end

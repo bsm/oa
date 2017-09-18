@@ -25,7 +25,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'GET show.json' do
     before do
-      get :show, format: 'json', id: application.to_param
+      get :show, params: {format: 'json', id: application.to_param}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -33,7 +33,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'GET show.html' do
     before do
-      get :show, format: 'html', id: application.to_param
+      get :show, params: {format: 'html', id: application.to_param}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -41,7 +41,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.json (successful)' do
     before do
-      post :create, format: 'json', bsm_oa_application: attributes_for(:application)
+      post :create, params: {format: 'json', bsm_oa_application: attributes_for(:application)}
     end
 
     it { is_expected.to respond_with(:created) }
@@ -49,7 +49,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.json (unsuccessful)' do
     before do
-      post :create, format: 'json', bsm_oa_application: attributes_for(:application, name: nil)
+      post :create, params: {format: 'json', bsm_oa_application: attributes_for(:application, name: nil)}
     end
 
     it { is_expected.to respond_with(:unprocessable_entity) }
@@ -57,7 +57,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'POST create.html' do
     before do
-      post :create, bsm_oa_application: attributes_for(:application)
+      post :create, params: {bsm_oa_application: attributes_for(:application)}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -66,7 +66,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'PUT update.json (successful)' do
     before do
-      put :update, format: 'json', id: application.to_param, bsm_oa_application: application.attributes
+      put :update, params: {format: 'json', id: application.to_param, bsm_oa_application: application.attributes}
     end
 
     it { is_expected.to respond_with(:no_content) }
@@ -74,7 +74,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'PUT update.json (unsuccessful)' do
     before do
-      put :update, format: 'json', id: application.to_param, bsm_oa_application: application.attributes.merge(name: nil)
+      put :update, params: {format: 'json', id: application.to_param, bsm_oa_application: build(:application, name: nil).attributes}
     end
 
     it { is_expected.to respond_with(:unprocessable_entity) }
@@ -82,7 +82,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'PUT update.html' do
     before do
-      put :update, id: application.to_param, bsm_oa_application: application.attributes
+      put :update, params: {id: application.to_param, bsm_oa_application: application.attributes}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -91,7 +91,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'DELETE destroy.json' do
     before do
-      delete :destroy, format: 'json', id: application.to_param
+      delete :destroy, params: {format: 'json', id: application.to_param}
     end
 
     it { is_expected.to respond_with(:no_content) }
@@ -99,7 +99,7 @@ describe BsmOa::ApplicationsController, type: :controller do
 
   describe 'DELETE destroy.html' do
     before do
-      delete :destroy, id: application.to_param
+      delete :destroy, params: {id: application.to_param}
     end
 
     it { is_expected.to respond_with(:redirect) }
