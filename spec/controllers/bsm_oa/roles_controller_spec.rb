@@ -17,7 +17,7 @@ describe BsmOa::RolesController, type: :controller do
   describe 'GET index.json' do
     before do
       resource
-      get :index, format: 'json'
+      get :index, params: {format: 'json'}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -25,7 +25,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'GET show.json' do
     before do
-      get :show, id: resource.to_param, format: 'json'
+      get :show, params: {id: resource.to_param, format: 'json'}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -33,7 +33,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'POST create.json (successful)' do
     before do
-      post :create, format: 'json', bsm_oa_role: resource.attributes.merge(name: "admin")
+      post :create, params: {format: 'json', bsm_oa_role: build(:role).attributes }
     end
 
     it { is_expected.to respond_with(:created) }
@@ -41,7 +41,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'PUT update.json (successful)' do
     before do
-      put :update, format: 'json', id: resource.to_param, bsm_oa_role: { name: "newname"}
+      put :update, params: {format: 'json', id: resource.to_param, bsm_oa_role: { name: "newname"}}
     end
 
     it { is_expected.to respond_with(:no_content) }
@@ -58,7 +58,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'GET show.html' do
     before do
-      get :show, id: resource.to_param
+      get :show, params: {id: resource.to_param}
     end
 
     it { is_expected.to render_template(:show) }
@@ -67,7 +67,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'GET edit.html' do
     before do
-      get :edit, id: resource.to_param
+      get :edit, params: {id: resource.to_param}
     end
     it { is_expected.to render_template(:edit) }
     it { is_expected.to respond_with(:success) }
@@ -83,7 +83,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'POST create.html (successful)' do
     before do
-      post :create, bsm_oa_role: resource.attributes.merge(name: "newname")
+      post :create, params: {bsm_oa_role: build(:role).attributes}
     end
     it { is_expected.to respond_with(:redirect) }
     it { is_expected.to redirect_to("http://test.host/roles/#{BsmOa::Role.last.to_param}") }
@@ -91,7 +91,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'POST create.html (unsuccessful)' do
     before do
-      post :create, bsm_oa_role: resource.attributes
+      post :create, params: {bsm_oa_role: resource.attributes}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -100,7 +100,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'PUT update.html (successful)' do
     before do
-      post :update, id: resource.to_param, bsm_oa_role: { name: "newname"}
+      post :update, params: {id: resource.to_param, bsm_oa_role: { name: "newname"}}
     end
 
     it { is_expected.to respond_with(:redirect) }
@@ -109,7 +109,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'PUT update.html (unsuccessful)' do
     before do
-      put :update, id: resource.to_param, bsm_oa_role: { name: "" }
+      put :update, params: {id: resource.to_param, bsm_oa_role: { name: "" }}
     end
 
     it { is_expected.to respond_with(:success) }
@@ -118,7 +118,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'DELETE destroy.json' do
     before do
-      delete :destroy, format: 'json', id: resource.to_param
+      delete :destroy, params: {format: 'json', id: resource.to_param}
     end
 
     it { is_expected.to respond_with(:no_content) }
@@ -126,7 +126,7 @@ describe BsmOa::RolesController, type: :controller do
 
   describe 'DELETE destroy.html' do
     before do
-      delete :destroy, id: resource.to_param
+      delete :destroy, params: {id: resource.to_param}
     end
 
     it { is_expected.to respond_with(:redirect) }

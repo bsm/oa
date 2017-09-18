@@ -16,18 +16,18 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ['lib']
 
-  s.add_dependency 'railties', '>= 4.1', '< 5.0'
-  s.add_dependency 'doorkeeper', '~> 3.0.0'
+  s.add_dependency 'railties', '~> 5.0'
+  s.add_dependency 'doorkeeper', '~> 4.2.0'
   s.add_dependency 'responders', '~> 2.1'
-  s.add_dependency 'bsm-models'
+  s.add_dependency 'bsm-models', '~> 0.9'
   s.add_dependency 'has_scope', '~> 0.6'
 
-  s.add_development_dependency 'rails', '>= 4.1'
-  s.add_development_dependency 'combustion', '~> 0.5.3'
+  s.add_development_dependency 'rails', '>= 5.0'
+  s.add_development_dependency 'combustion', '~> 0.7.0'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'faker'
-  s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'rails-controller-testing'
 end

@@ -30,6 +30,7 @@ require 'shoulda-matchers'
 require 'factory_girl'
 require 'faker'
 require 'database_cleaner'
+require 'rails-controller-testing'
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
@@ -37,9 +38,9 @@ RSpec.configure do |config|
   config.render_views
 
   config.before :suite do
-    silence_stream(STDOUT) do
-      ActiveRecord::Migrator.migrate(File.expand_path('../../db/migrate', __FILE__), nil)
-    end
+    # silence_stream(STDOUT) do
+    #   ActiveRecord::Migrator.migrate(File.expand_path('../../db/migrate', __FILE__), nil)
+    # end
     FactoryGirl.find_definitions
   end
 
@@ -61,3 +62,16 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 end
+
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
+  end
+end
+
+Rails::Controller::Testing.install

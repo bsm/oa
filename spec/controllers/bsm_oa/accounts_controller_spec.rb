@@ -11,17 +11,17 @@ describe BsmOa::AccountsController, type: :controller do
 
   describe 'GET show.json (successful)' do
     before do
-      get "/me.json", {client_id: application.uid, client_secret: application.secret}, "HTTP_AUTHORIZATION" => "Bearer #{access_token.token}"
+      get "/me.json", {client_id: application.uid, client_secret: application.secret}, {"HTTP_AUTHORIZATION" => "Bearer #{access_token.token}"}
     end
 
     it { expect(last_response.status).to eq(200) }
-    it { expect(last_response.headers).to include("Content-Type" => "application/json") }
+    it { expect(last_response.headers).to include("Content-Type" => "application/json; charset=utf-8") }
   end
 
   describe 'GET show.json (expired)' do
     before do
       access_token.update_column :resource_owner_id, 0
-      get "/me.json", {client_id: application.uid, client_secret: application.secret}, "HTTP_AUTHORIZATION" => "Bearer #{access_token.token}"
+      get "/me.json", {client_id: application.uid, client_secret: application.secret}, {"HTTP_AUTHORIZATION" => "Bearer #{access_token.token}"}
     end
 
     it { expect(last_response.status).to eq(403) }
@@ -29,7 +29,7 @@ describe BsmOa::AccountsController, type: :controller do
 
   describe 'GET show.json (bad auth token)' do
     before do
-      get "/me.json", {client_id: application.uid, client_secret: application.secret}, "HTTP_AUTHORIZATION" => "Bearer abcdef"
+      get "/me.json", {client_id: application.uid, client_secret: application.secret}, {"HTTP_AUTHORIZATION" => "Bearer abcdef"}
     end
 
     it { expect(last_response.status).to eq(401) }
