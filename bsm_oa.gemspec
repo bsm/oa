@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'railties', '~> 5.0'
   s.add_dependency 'doorkeeper', '~> 4.2.0'
   s.add_dependency 'responders', '~> 2.1'
-  s.add_dependency 'bsm-models', '~> 0.9'
   s.add_dependency 'has_scope', '~> 0.6'
 
   s.add_development_dependency 'rails', '>= 5.0'

@@ -1,5 +1,4 @@
 require 'doorkeeper'
-require 'bsm-models'
 require 'responders'
 require 'has_scope'
 

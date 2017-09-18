@@ -4,7 +4,7 @@ module BsmOa
     include ActionController::Head
     include Doorkeeper::Rails::Helpers
 
-    before_filter :doorkeeper_authorize!
+    before_action :doorkeeper_authorize!
 
     # GET /me.json
     def show

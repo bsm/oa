@@ -4,7 +4,7 @@
     respond_to :json, except: [:new, :edit]
     respond_to :js, only: [:toggle]
 
-    before_filter :redirect_to_index_on_html, only: [:show]
+    before_action :redirect_to_index_on_html, only: [:show]
 
     def index
       @authorizations = apply_scopes(resource_scope)
