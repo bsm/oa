@@ -38,9 +38,6 @@ RSpec.configure do |config|
   config.render_views
 
   config.before :suite do
-    # silence_stream(STDOUT) do
-    #   ActiveRecord::Migrator.migrate(File.expand_path('../../db/migrate', __FILE__), nil)
-    # end
     FactoryGirl.find_definitions
   end
 
