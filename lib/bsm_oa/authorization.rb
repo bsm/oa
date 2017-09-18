@@ -33,7 +33,7 @@ module BsmOa
     protected
 
       def normalize_permissions!
-        self.permissions = [] if permissions.nil?
+        self.permissions ||= []
         self.permissions = permissions.reject(&:blank?).map(&:strip).map(&:downcase).uniq
         self.permissions &= application.permissions if application
       end
