@@ -22,6 +22,7 @@ module BsmOa
 
     # @param [String] name permission name
     def toggle_permission!(name)
+      self.permissions ||= []
       update permissions: (permissions.include?(name) ? permissions - [name] : permissions + [name])
     end
 
