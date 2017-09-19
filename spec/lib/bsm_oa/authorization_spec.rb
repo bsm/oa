@@ -33,7 +33,7 @@ RSpec.describe BsmOa::Authorization, type: :model do
   end
 
   describe 'toggle' do
-    let(:authorization) { create :authorization}
+    let(:authorization) { create :authorization }
 
     it 'should toggle adding permissions' do
       authorization.toggle_permission!('finance')
@@ -43,7 +43,11 @@ RSpec.describe BsmOa::Authorization, type: :model do
       authorization.toggle_permission!('admin')
       expect(authorization.reload.permissions).to eq([])
     end
+    it "should toggle permissions when nil" do
+      auth =  build(:authorization)
+      auth.toggle_permission!('finance')
+      auth.save!
+      expect(auth.reload.permissions).to eq(['admin', 'finance'])
+    end
   end
 end
-
-
