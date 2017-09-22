@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    bsm_oa (0.4.0)
+    bsm_oa (0.4.1)
       doorkeeper (~> 4.2.0)
       has_scope (~> 0.6)
       railties (~> 5.0)
@@ -173,4 +173,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.14.5
+   1.14.6
