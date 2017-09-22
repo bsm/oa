@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Rails Open Authority engine'
   s.description = 'Opinionated toolbox for building centralised authorities'
   s.licenses    = ['MIT']
+  s.required_ruby_version = '>= 2.3.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- spec/*`.split("\n")
